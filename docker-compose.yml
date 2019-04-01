@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    container_name: web
+    volumes:
+      - ./src:/src
+    expose:
+      - "8000"
+    links:
+      - db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: on-failure
+  db:
+    image: postgres:latest
+    container_name: db
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    depends_on:
+      - web
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/src
+      - ./config/nginx:/etc/nginx/conf.d

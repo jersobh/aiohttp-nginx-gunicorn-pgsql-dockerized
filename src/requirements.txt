@@ -1,0 +1,5 @@
+aiohttp
+gunicorn
+peewee
+peewee_async
+psycopg2
