@@ -2,4 +2,4 @@ from controllers import controller
 
 def routes(app):
     app.router.add_get('/', controller.index)
-    app.router.add_get('/json', controller.json_example)
+    app.router.add_get('/users', controller.users)

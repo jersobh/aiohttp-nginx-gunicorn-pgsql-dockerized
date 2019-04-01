@@ -2,6 +2,12 @@ from views import render
 import models
 
 async def index(request):
+    data = "Hello World!"
+    status = 200
+    return await render.raw(data, status)
+
+
+async def users(request):
     data = []
     users = await models.objects.execute(models.User.select().dicts())
     print(users)
@@ -12,19 +18,10 @@ async def index(request):
         users = await models.objects.execute(models.User.select().dicts())
 
     for user in users:
-        u={}
+        u = {}
         u['username'] = user['username']
         u['email'] = user['email']
         data.append(u)
-        
+
     status = 200
     return await render.json(data, status)
-
-
-async def json_example(request):
-    data = {}
-    data['name'] = 'Jhonny'
-    data['surname'] = 'test'
-    status = 200
-    return await render.json(data, status)
-
