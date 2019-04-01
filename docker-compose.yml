@@ -2,9 +2,7 @@ version: "3.1"
 
 services:
   web:
-    build:
-      context: .
-      dockerfile: python-Dockerfile
+    build: .
     container_name: web
     volumes:
       - ./src:/src

@@ -1,5 +1,4 @@
 from aiohttp import web
-import simplejson as json
 
 
 async def json(data, status, headers = None):

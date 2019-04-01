@@ -1,6 +1,5 @@
 from views import render
 import models
-from playhouse.shortcuts import model_to_dict, dict_to_model
 
 async def index(request):
     data = {}
@@ -11,6 +10,7 @@ async def index(request):
         user1 = await models.objects.create(models.User, username='test2', password='123', email='test2@test.com')
         user2 = await models.objects.create(models.User, username='test3', password='123', email='test3@test.com')
         users = await models.objects.get(models.User.select().dicts())
+        print(users)
 
     print(users)
     status = 200
