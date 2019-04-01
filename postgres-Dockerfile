@@ -1,0 +1,3 @@
+FROM postgres
+ENV POSTGRES_DB app
+COPY database.sql /docker-entrypoint-initdb.d/10-init.sql

@@ -1,8 +1,10 @@
-version: "3"
+version: "3.1"
 
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: python-Dockerfile
     container_name: web
     volumes:
       - ./src:/src
@@ -17,8 +19,14 @@ services:
       retries: 5
     restart: on-failure
   db:
-    image: postgres:latest
+    image: postgres
     container_name: db
+    restart: always
+    volumes:
+      - ./database.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_DB: app
+      POSTGRES_PASSWORD: khW5w5B9MCStJE63
   nginx:
     image: nginx:latest
     container_name: nginx
