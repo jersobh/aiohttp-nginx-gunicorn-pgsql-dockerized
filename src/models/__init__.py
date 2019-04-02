@@ -4,7 +4,7 @@ import logging
 from peewee_async import Manager, PostgresqlDatabase
 
 database = PostgresqlDatabase(
-    database='postgres',
+    'app',
     user='postgres',
     host='db',
     port='5432',
