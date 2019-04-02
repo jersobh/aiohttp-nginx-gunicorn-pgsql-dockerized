@@ -13,7 +13,16 @@ database = PostgresqlDatabase(
 objects = Manager(database)
 
 
-class User(peewee.Model):
+class UnknownField(object):
+    def __init__(self, *_, **__): pass
+
+
+class BaseModel(peewee.Model):
+    class Meta:
+        database = database
+
+
+class User(BaseModel):
     user_id = peewee.PrimaryKeyField()
     username = peewee.CharField(max_length=40, unique=True,  null=False)
     password = peewee.CharField(max_length=40, null=False)
@@ -22,7 +31,6 @@ class User(peewee.Model):
     last_login = peewee.TimestampField()
 
     class Meta:
-        database = database
         db_table = 'user'
 
 
