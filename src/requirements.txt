@@ -4,3 +4,4 @@ peewee==2.10.2
 peewee_async
 aiopg
 psycopg2
+aiopeewee
